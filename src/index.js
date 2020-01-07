@@ -1,12 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Cookies from "js-cookie";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+window.addEventListener("load", () => {
+  console.log("loaded.");
+  const storedTabCount = parseInt(Cookies.get("tabCount"));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  if (!storedTabCount) {
+    Cookies.set("tabCount", "1");
+  } else {
+    const nextTabCount = storedTabCount + 1;
+    Cookies.set("tabCount", String(nextTabCount));
+  }
+
+  ReactDOM.render(<App />, document.getElementById("root"));
+});
+
+window.addEventListener("beforeunload", () => {
+  console.log("bye..");
+
+  const storedTabCount = parseInt(Cookies.get("tabCount"));
+
+  if (!storedTabCount) {
+    Cookies.set("tabCount", "1");
+  } else {
+    const nextTabCount = storedTabCount - 1;
+    Cookies.set("tabCount", String(nextTabCount));
+  }
+});
