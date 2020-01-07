@@ -16,7 +16,7 @@ window.onload = () => {
   }
 
   ReactDOM.render(<App />, document.getElementById("root"));
-});
+};
 
 window.onunload = window.onbeforeunload = () => {
   console.log("bye..");
@@ -29,4 +29,4 @@ window.onunload = window.onbeforeunload = () => {
     const nextTabCount = storedTabCount - 1;
     Cookies.set("tabCount", String(nextTabCount));
   }
-});
+};
