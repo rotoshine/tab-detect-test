@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-window.addEventListener("load", () => {
+window.onload = () => {
   console.log("loaded.");
   const storedTabCount = parseInt(Cookies.get("tabCount"));
 
@@ -18,7 +18,7 @@ window.addEventListener("load", () => {
   ReactDOM.render(<App />, document.getElementById("root"));
 });
 
-window.addEventListener("beforeunload", () => {
+window.onunload = window.onbeforeunload = () => {
   console.log("bye..");
 
   const storedTabCount = parseInt(Cookies.get("tabCount"));
